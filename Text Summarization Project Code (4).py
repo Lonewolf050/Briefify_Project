@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# # Importing Library
+# 
+
+# In[1]:
+
+
 import tkinter as tk
 from tkinter import messagebox, scrolledtext, Button, Label, Entry
 from wordcloud import WordCloud, STOPWORDS
@@ -9,7 +15,46 @@ import matplotlib.pyplot as plt
 import nltk
 from heapq import nlargest
 import string
+nltk.download('stopwords')
+nltk.download('punkt')
 
+
+# In[2]:
+
+
+with open("sample.txt","r", encoding="utf8") as f:
+    text=f.read()
+    
+
+
+# In[3]:
+
+
+print(text)
+
+
+# In[4]:
+
+
+pip install wordcloud
+
+
+# In[5]:
+
+
+pip install tk
+
+
+# In[6]:
+
+
+pip install rake-nltk
+
+
+# In[ ]:
+
+
+# Initialize NLTK
 nltk.download('stopwords')
 nltk.download('punkt')
 
@@ -44,7 +89,7 @@ def summarize_text():
         if word not in word_freq:
             word_freq[word] = 1
         else:
-            word_freq[word] += 1
+            word_freq[word] = word_freq[word] + 1
 
     max_freq = max(word_freq.values())
 
@@ -60,7 +105,7 @@ def summarize_text():
                 if sent not in sent_score.keys():
                     sent_score[sent] = word_freq[word]
                 else:
-                    sent_score[sent] += word_freq[word]
+                    sent_score[sent] = sent_score[sent] + word_freq[word]
 
     summary_sent = nlargest(10, sent_score, key=sent_score.get)
     summary = " ".join(summary_sent)
@@ -69,7 +114,7 @@ def summarize_text():
 
 # Create main window
 root = tk.Tk()
-root.title("Text Analysis Console")
+root.title("Text Analysis GUI")
 
 # Text Input
 Label(root, text="Enter Text:").pack()
@@ -92,3 +137,10 @@ summary_output.pack()
 
 # Start GUI
 root.mainloop()
+
+
+# In[ ]:
+
+
+
+
